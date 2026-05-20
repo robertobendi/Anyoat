@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin
 Disallow: /install
 
-Sitemap: http://127.0.0.1:64728/sitemap.xml
+Sitemap: http://127.0.0.1:64847/sitemap.xml
