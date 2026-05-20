@@ -1,11 +1,27 @@
 {% extends '@theme/layout.twig' %}
 
-{% block title %}Not found · {{ site.name }}{% endblock %}
+{% block title %}Plate not found · Anyo at Disenyo{% endblock %}
 
 {% block content %}
-<div class="wrap empty-state">
-    <h1>404</h1>
-    <p class="lede">That page doesn’t exist — or has been moved.</p>
-    <p><a href="/">Go home →</a></p>
-</div>
+<section class="hero">
+    <div class="container">
+        <p class="eyebrow">Plate not in folio <span class="square-mark"></span> 404</p>
+        <h1 class="hero__h1">A page<br>that isn't<br><em>here.</em></h1>
+        <p class="hero__deck hero__deck--ink" style="max-width: 48ch;">The page you asked for doesn't exist in the folio — it may have been renumbered, or the link was mis-set. The four open sections of the folio are below.</p>
+        <hr class="rule-4">
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <ul class="squares" style="font-family: var(--font-display); font-style: italic; font-size: 1.5rem; line-height: 1.6;">
+            <li><a href="/" style="color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--terracotta);">Folio 01 — Home</a></li>
+            <li><a href="/work" style="color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--terracotta);">Folio 02 — Work</a></li>
+            <li><a href="/journal" style="color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--terracotta);">Folio 03 — Journal</a></li>
+            <li><a href="/practice" style="color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--terracotta);">Section II — Practice</a></li>
+            <li><a href="/inquiry" style="color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--terracotta);">Section V — Inquiry</a></li>
+        </ul>
+        <p class="end-mark">End of section</p>
+    </div>
+</section>
 {% endblock %}

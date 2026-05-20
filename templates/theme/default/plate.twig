@@ -1,0 +1,74 @@
+{% extends '@theme/layout.twig' %}
+
+{% set num = entry.field('plate_number') ?? 0 %}
+{% set num_str = "%02d"|format(num) %}
+
+{% block title %}Plate {{ num_str }} — {{ entry.field('title') }} · Anyo at Disenyo{% endblock %}
+
+{% block vertical_folio %}
+<div class="vertical-folio" aria-hidden="true">FOLIO 02 · PLATE {{ num_str }} · ANYO AT DISENYO</div>
+{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+    <div class="container">
+        <p class="eyebrow"><a href="/work" style="color: var(--mustard); text-decoration: none;">Folio 02 — Work</a> <span class="square-mark"></span> Plate {{ num_str }}</p>
+        <h1 class="hero__h1" style="font-size: clamp(2.25rem, 5vw, 4rem); margin-top: 0.6rem;">{{ entry.field('title') }}</h1>
+        <p class="hero__deck">
+            {% if entry.field('location') %}{{ entry.field('location') }}{% endif %}
+            {% if entry.field('project_type') %} · {{ entry.field('project_type') }}{% endif %}
+            {% if entry.field('year') %} · {{ entry.field('year') }}{% endif %}
+        </p>
+        <hr class="rule-4">
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="grid12" style="row-gap: 1.4rem; align-items: start;">
+            <div style="grid-column: 1 / span 8; min-width: 0;">
+                <figure class="plate-folio__figure" style="position: relative;">
+                    <div class="plate-folio__figure-inner" style="aspect-ratio: 16/10;">
+                        <span class="plate-folio__badge">Plate {{ num_str }}</span>
+                        {% if entry.field('hero_image') %}
+                            <img src="{{ entry.field('hero_image') }}" alt="{{ entry.field('title') }}">
+                        {% else %}
+                            <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="width:80%;">
+                                <rect x="40" y="50" width="320" height="160" fill="none" stroke="#6E6E3C" stroke-width="2"/>
+                                <path d="M 30 50 L 200 14 L 370 50" stroke="#A8442B" stroke-width="2.5" fill="none"/>
+                                <line x1="170" y1="50" x2="170" y2="210" stroke="#6E6E3C" stroke-width="2"/>
+                            </svg>
+                        {% endif %}
+                    </div>
+                </figure>
+            </div>
+            <div style="grid-column: 9 / span 4; min-width: 0;">
+                <p class="eyebrow eyebrow--charcoal" style="margin: 0;">Credit</p>
+                <p class="plate-folio__credit" style="border-top: 0; padding-top: 0; margin: 0.4rem 0 1.4rem;">
+                    Plate {{ num_str }} — {{ entry.field('title') }}<br>
+                    {% if entry.field('location') %}{{ entry.field('location') }}<br>{% endif %}
+                    {% if entry.field('year') %}{{ entry.field('year') }}{% endif %}
+                </p>
+                <p><a class="btn--ghost" href="/work">← Back to folio</a></p>
+            </div>
+        </div>
+
+        {% if entry.field('plan_image') %}
+            <figure class="plate-folio__figure" style="margin-top: 2.5rem; position: relative;">
+                <div class="plate-folio__figure-inner" style="aspect-ratio: 4/3;">
+                    <img src="{{ entry.field('plan_image') }}" alt="Plan drawing — {{ entry.field('title') }}">
+                </div>
+                <figcaption class="plate-folio__credit" style="margin-top: 0.6rem;">Plan drawing · {{ entry.field('title') }}</figcaption>
+            </figure>
+        {% endif %}
+
+        <div class="article" style="margin-top: 3rem;">
+            {{ entry.field('body')|markdown }}
+        </div>
+
+        <p class="end-mark">End of plate {{ num_str }}</p>
+    </div>
+</section>
+
+{% endblock %}

@@ -3,12 +3,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %}{{ site.name }} — Architectural practice, Batangas{% endblock %}</title>
-    <meta name="description" content="{% block description %}{% if meta_description is defined %}{{ meta_description }}{% else %}Anyo at Disenyo is a Batangas architectural practice designing homes and small buildings shaped by Philippine light, climate, and the way a family actually lives in a room.{% endif %}{% endblock %}">
+    <title>Inquiry — Make an inquiry · Anyo at Disenyo</title>
+    <meta name="description" content="Begin a project with Anyo at Disenyo. Phone, Messenger, or the form below — we reply within two working days.">
 
     <link rel="icon" href="/uploads/favicon.ico">
     <link rel="apple-touch-icon" href="/uploads/logo.jpg">
-    <meta property="og:title" content="{{ site.name }} — Architectural practice, Batangas">
+    <meta property="og:title" content="Anyoat — Architectural practice, Batangas">
     <meta property="og:description" content="A Batangas architectural practice designing homes and small buildings shaped by Philippine light, climate, and the way a family actually lives in a room.">
     <meta property="og:image" content="/uploads/logo.jpg">
     <meta property="og:type" content="website">
@@ -1037,8 +1037,7 @@
             html { scroll-behavior: auto; }
         }
     </style>
-    {% block head %}{% endblock %}
-</head>
+    </head>
 <body>
     <a class="skip-link" href="#main">Skip to content</a>
 
@@ -1046,8 +1045,7 @@
         <div class="site-header__inner">
             <a class="brand" href="/" aria-label="Anyo at Disenyo — home">
                 <span class="brand__mark" aria-hidden="true">
-                    {# Interlocking a/d monogram traced from source/images/og-image.jpg #}
-                    <svg viewBox="0 0 240 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <svg viewBox="0 0 240 120" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="11" y="14" width="118" height="92" rx="46" ry="46"
                               fill="none" stroke="currentColor" stroke-width="20"/>
                         <rect x="111" y="14" width="118" height="92" rx="46" ry="46"
@@ -1063,21 +1061,186 @@
             <button class="menu-toggle" aria-controls="primary-nav" aria-expanded="false">Menu</button>
 
             <nav class="site-nav" id="primary-nav" aria-label="Primary">
-                <a href="/work"     {% if current_path|default('') starts with '/work'    %}aria-current="page"{% endif %}>Work</a>
-                <a href="/practice" {% if current_path|default('') starts with '/practice'%}aria-current="page"{% endif %}>Practice</a>
-                <a href="/journal"  {% if current_path|default('') starts with '/journal' %}aria-current="page"{% endif %}>Journal</a>
-                <a href="/inquiry"  {% if current_path|default('') starts with '/inquiry' %}aria-current="page"{% endif %}>Inquiry</a>
+                <a href="/work"     >Work</a>
+                <a href="/practice" >Practice</a>
+                <a href="/journal"  >Journal</a>
+                <a href="/inquiry"  >Inquiry</a>
             </nav>
         </div>
     </header>
 
-    {# Vertical folio number running up the right gutter — fingerprint #7 #}
-    {% block vertical_folio %}
-        <div class="vertical-folio" aria-hidden="true">FOLIO 01 / 2026 · ANYO AT DISENYO · BATANGAS</div>
-    {% endblock %}
+        <div class="vertical-folio" aria-hidden="true">SECTION V / 2026 · INQUIRY · ANYO AT DISENYO</div>
 
     <main id="main">
-        {% block content %}{% endblock %}
+        
+<section class="hero">
+    <div class="container">
+        <div class="hero__grid">
+            <div class="hero__illustration" aria-hidden="true">
+                                <svg viewBox="0 0 720 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Olive line drawing of a stilted veranda with a banaba branch">
+                                        <path d="M 0 380 Q 200 320 380 350 T 720 340 L 720 420 L 0 420 Z" fill="#FBF7EC" stroke="#6E6E3C" stroke-width="1.8"/>
+                                        <circle cx="600" cy="120" r="48" fill="#D9A036" opacity="0.95"/>
+                                        <g stroke="#6E6E3C" stroke-width="2.5" fill="none" stroke-linecap="round">
+                        <path d="M 0 60 Q 120 90, 180 140 Q 220 178, 260 200"/>
+                        <path d="M 100 80 Q 95 60, 110 40"/>
+                        <path d="M 160 130 Q 165 100, 180 90"/>
+                    </g>
+                    <g fill="#6E6E3C">
+                        <ellipse cx="68" cy="68" rx="22" ry="14" transform="rotate(-25 68 68)"/>
+                        <ellipse cx="110" cy="92" rx="22" ry="14" transform="rotate(-12 110 92)"/>
+                        <ellipse cx="148" cy="118" rx="20" ry="13" transform="rotate(-4 148 118)"/>
+                        <ellipse cx="186" cy="142" rx="22" ry="14" transform="rotate(8 186 142)"/>
+                        <ellipse cx="222" cy="172" rx="22" ry="14" transform="rotate(16 222 172)"/>
+                    </g>
+                    <g fill="#D9A036">
+                        <circle cx="92" cy="58" r="5"/>
+                        <circle cx="138" cy="100" r="5"/>
+                        <circle cx="170" cy="128" r="5"/>
+                        <circle cx="206" cy="156" r="5"/>
+                    </g>
+                    <g fill="#A8442B" opacity="0.85">
+                        <circle cx="78" cy="80" r="3.5"/>
+                        <circle cx="124" cy="118" r="3.5"/>
+                        <circle cx="200" cy="180" r="3.5"/>
+                    </g>
+
+                                        <g stroke="#6E6E3C" stroke-width="2.5" fill="none">
+                                                <line x1="240" y1="240" x2="640" y2="240"/>
+                        <line x1="240" y1="240" x2="232" y2="248"/>
+                        <line x1="640" y1="240" x2="648" y2="248"/>
+                                                <line x1="240" y1="252" x2="640" y2="252"/>
+                                                <line x1="280" y1="252" x2="280" y2="370"/>
+                        <line x1="400" y1="252" x2="400" y2="370"/>
+                        <line x1="520" y1="252" x2="520" y2="370"/>
+                        <line x1="616" y1="252" x2="616" y2="370"/>
+                                            </g>
+                                        <rect x="240" y="370" width="400" height="10" fill="#A8442B"/>
+                                        <g stroke="#6E6E3C" stroke-width="2.5" fill="none">
+                        <line x1="280" y1="380" x2="280" y2="420"/>
+                        <line x1="400" y1="380" x2="400" y2="420"/>
+                        <line x1="520" y1="380" x2="520" y2="420"/>
+                        <line x1="616" y1="380" x2="616" y2="420"/>
+                    </g>
+                                        <g stroke="#6E6E3C" stroke-width="1.5">
+                        <line x1="280" y1="340" x2="400" y2="340"/>
+                        <line x1="280" y1="350" x2="400" y2="350"/>
+                        <line x1="520" y1="340" x2="616" y2="340"/>
+                        <line x1="520" y1="350" x2="616" y2="350"/>
+                    </g>
+                                        <rect x="306" y="312" width="26" height="22" fill="#D9A036" stroke="#6E6E3C" stroke-width="1.5"/>
+                    <rect x="356" y="312" width="26" height="22" fill="#D9A036" stroke="#6E6E3C" stroke-width="1.5"/>
+                                        <rect x="336" y="320" width="14" height="14" fill="none" stroke="#A8442B" stroke-width="1.5"/>
+                                        <g stroke="#6E6E3C" stroke-width="1.5" fill="none">
+                        <line x1="430" y1="420" x2="500" y2="380"/>
+                        <line x1="446" y1="412" x2="500" y2="394"/>
+                        <line x1="462" y1="406" x2="500" y2="386"/>
+                    </g>
+                                        <line x1="0" y1="420" x2="720" y2="420" stroke="#6E6E3C" stroke-width="2"/>
+                                        <text x="20" y="510" font-family="Khand, sans-serif" font-size="13" font-weight="600" fill="#6E6E3C" letter-spacing="2">FIG. 05 — STILTED VERANDA · TWO CHAIRS · INQUIRY</text>
+                </svg>
+            </div>
+
+            <div class="hero__text">
+                <p class="folio">Section V / 2026 <span class="square-mark"></span> Inquiry</p>
+                <h1 class="hero__h1">Make an<br>inquiry.</h1>
+                <p class="hero__deck hero__deck--ink">Phone, Messenger, or the form below. We reply within two working days. A short note about the site, the family, and the rough budget is enough to begin.</p>
+            </div>
+        </div>
+        <hr class="rule-4">
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <p class="eyebrow">Section V.A <span class="square-mark"></span> Three routes</p>
+        <h2>Reach us.</h2>
+
+        <div class="route-row" style="margin-top: 1.6rem;">
+            <div class="route-card">
+                <p class="route-card__label">Phone</p>
+                <p class="route-card__value"><a href="tel:+639170000000">+63 917 000 0000</a></p>
+                <p class="route-card__hint">Mondays through Fridays, 9am–5pm Manila time. Tagalog or English.</p>
+            </div>
+            <div class="route-card">
+                <p class="route-card__label">Messenger</p>
+                <p class="route-card__value"><a href="https://www.facebook.com/anyoatdisenyo" target="_blank" rel="noopener">facebook.com/anyoatdisenyo</a></p>
+                <p class="route-card__hint">Often the fastest route — we reply on Messenger most evenings.</p>
+            </div>
+            <div class="route-card">
+                <p class="route-card__label">Email</p>
+                <p class="route-card__value"><a href="mailto:hello@anyoatdisenyo.ph">hello@anyoatdisenyo.ph</a></p>
+                <p class="route-card__hint">For longer briefs, drawings, or shared files.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section section--lg" style="background: var(--coconut);">
+    <div class="container">
+        <div class="grid12" style="row-gap: 1.4rem; align-items: start;">
+            <div style="grid-column: 1 / span 5; min-width: 0;">
+                <p class="eyebrow">Section V.B <span class="square-mark"></span> The form</p>
+                <h2>A short note.</h2>
+                <p style="color: var(--charcoal); max-width: 36ch;">Tell us where the site is, who will live there, and roughly when you'd like to begin. We'll reply with a short note about whether we can take the work on, and what the next step looks like.</p>
+                <p style="color: var(--charcoal); max-width: 36ch; margin-top: 1rem;">If you'd rather not use the form, every route above goes to the same studio inbox.</p>
+            </div>
+
+            <div style="grid-column: 7 / span 6; min-width: 0;">
+                                <form class="inquiry-form" method="post" action="/forms/contact">
+                    <label for="f-name">Name</label>
+                    <input id="f-name" name="name" type="text" required autocomplete="name">
+
+                    <label for="f-contact">Phone or email</label>
+                    <input id="f-contact" name="contact" type="text" required autocomplete="email">
+
+                    <label for="f-location">Project location</label>
+                    <input id="f-location" name="project_location" type="text" placeholder="e.g. Lipa, Batangas">
+
+                    <label for="f-type">Project type</label>
+                    <select id="f-type" name="project_type">
+                        <option value="Residential">Residential</option>
+                        <option value="Small commercial">Small commercial</option>
+                        <option value="Renovation / addition">Renovation / addition</option>
+                        <option value="Other / not sure">Other / not sure</option>
+                    </select>
+
+                    <label for="f-message">Brief description</label>
+                    <textarea id="f-message" name="message" rows="6" required placeholder="A few sentences about the site, the family, the rough budget, and when you'd like to begin."></textarea>
+
+                    <label style="margin-top: 1.4rem;">Preferred contact route</label>
+                    <div class="radio-row">
+                        <label><input type="radio" name="preferred_route" value="Phone"> Phone</label>
+                        <label><input type="radio" name="preferred_route" value="Messenger" checked> Messenger</label>
+                        <label><input type="radio" name="preferred_route" value="Email"> Email</label>
+                    </div>
+
+                                        <input type="text" name="_hp" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true">
+
+                    <div class="form-actions">
+                        <button class="btn" type="submit">Send the inquiry</button>
+                        <span class="note">Or email <a href="mailto:hello@anyoatdisenyo.ph" style="color: var(--charcoal);">hello@anyoatdisenyo.ph</a></span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="strip">
+    <hr class="rule-4" style="position: absolute; top: 0; left: 0; right: 0;">
+    <div class="strip__inner">
+        <p class="strip__phrase">Hangin.<br><em>Liwanag.</em><br>Lilim.</p>
+        <div class="strip__cta">
+            <p class="eyebrow eyebrow--charcoal" style="margin: 0 0 0.4rem;">Studio</p>
+            <p style="color: var(--ink); max-width: 32ch; margin: 0;">
+                Anyo at Disenyo<br>
+                Architectural Services<br>
+                Batangas City, Philippines
+            </p>
+        </div>
+    </div>
+</div>
+
     </main>
 
     <footer class="site-footer">
@@ -1115,7 +1278,7 @@
             </div>
         </div>
         <div class="site-footer__bottom">
-            <span>© {{ "now"|date('Y') }} Anyo at Disenyo · Architectural Services</span>
+            <span>© 2026 Anyo at Disenyo · Architectural Services</span>
             <span>Bahay · Anyo · Hangin</span>
         </div>
     </footer>

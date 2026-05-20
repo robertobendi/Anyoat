@@ -1,13 +1,25 @@
 {% extends '@theme/layout.twig' %}
 {% set meta_description = entry.field('meta_description') %}
 
-{% block title %}{{ entry.field('title') }} · {{ site.name }}{% endblock %}
+{% block title %}{{ entry.field('title') }} · Anyo at Disenyo{% endblock %}
 
 {% block content %}
-<article class="wrap">
-    <h1>{{ entry.field('title') }}</h1>
-    <div class="article-body">
-        {{ entry.field('body')|markdown }}
+
+<section class="hero">
+    <div class="container">
+        <p class="eyebrow">Section <span class="square-mark"></span> {{ entry.field('title') }}</p>
+        <h1 class="hero__h1" style="font-size: clamp(2.25rem, 5vw, 4.25rem); margin-top: 0.6rem;">{{ entry.field('title') }}</h1>
+        <hr class="rule-4">
     </div>
-</article>
+</section>
+
+<section class="section">
+    <div class="container">
+        <article class="article">
+            {{ entry.field('body')|markdown }}
+        </article>
+        <p class="end-mark">End of section</p>
+    </div>
+</section>
+
 {% endblock %}

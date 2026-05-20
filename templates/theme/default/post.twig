@@ -1,22 +1,41 @@
 {% extends '@theme/layout.twig' %}
 {% set meta_description = entry.field('excerpt') %}
 
-{% block title %}{{ entry.field('title') }} · {{ site.name }}{% endblock %}
+{% block title %}{{ entry.field('title') }} · Journal · Anyo at Disenyo{% endblock %}
+
+{% block vertical_folio %}
+<div class="vertical-folio" aria-hidden="true">FOLIO 03 · NOTE · ANYO AT DISENYO</div>
+{% endblock %}
 
 {% block content %}
-<article class="wrap">
-    <h1>{{ entry.field('title') }}</h1>
-    <p class="meta">
-        {{ (entry.publishAt ?? entry.createdAt)|date('F j, Y') }}
-        {% if entry.field('author') %} · by {{ entry.field('author') }}{% endif %}
-    </p>
-    {% if entry.field('excerpt') %}
-        <p class="lede">{{ entry.field('excerpt') }}</p>
-    {% endif %}
-    <div class="article-body">
-        {{ entry.field('body')|markdown }}
+
+<section class="hero">
+    <div class="container">
+        <p class="eyebrow">
+            <a href="/journal" style="color: var(--mustard); text-decoration: none;">Folio 03 — Journal</a>
+            <span class="square-mark"></span>
+            {% if entry.field('eyebrow') %}{{ entry.field('eyebrow') }}{% else %}Note{% endif %}
+        </p>
+        <h1 class="hero__h1" style="font-size: clamp(2.25rem, 5vw, 4.25rem); margin-top: 0.6rem;">{{ entry.field('title') }}</h1>
+        <p class="hero__deck" style="margin-top: 1rem;">
+            <span class="ink-bullet">{{ (entry.publishAt ?? entry.createdAt)|date('d M Y') }}</span>
+            {% if entry.field('author') %} <span class="square-mark"></span> <span class="ink-bullet">By {{ entry.field('author') }}</span>{% endif %}
+        </p>
+        {% if entry.field('excerpt') %}
+            <p class="hero__deck hero__deck--ink" style="font-size: 1.2rem; max-width: 56ch;">{{ entry.field('excerpt') }}</p>
+        {% endif %}
+        <hr class="rule-4">
     </div>
-    <hr>
-    <p><a href="/blog">← All posts</a></p>
-</article>
+</section>
+
+<section class="section">
+    <div class="container">
+        <article class="article">
+            {{ entry.field('body')|markdown }}
+        </article>
+        <p class="end-mark">End of note</p>
+        <p style="text-align:center;"><a class="btn--ghost" href="/journal">← Back to journal</a></p>
+    </div>
+</section>
+
 {% endblock %}

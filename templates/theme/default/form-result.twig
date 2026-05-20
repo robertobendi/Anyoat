@@ -1,17 +1,35 @@
 {% extends '@theme/layout.twig' %}
 
-{% block title %}{{ ok ? 'Thanks' : 'Try again' }} · {{ site.name }}{% endblock %}
+{% block title %}{{ ok ? 'Inquiry received' : 'Inquiry — please try again' }} · Anyo at Disenyo{% endblock %}
 
 {% block content %}
-<div class="wrap" style="text-align:center;padding:4rem 0;">
-    {% if ok %}
-        <h1>Thanks for getting in touch.</h1>
-        <p class="lede">We received your message.</p>
-    {% else %}
-        <h1>Something went wrong.</h1>
-        <ul style="display:inline-block;text-align:left;">
-            {% for e in errors %}<li>{{ e }}</li>{% endfor %}</ul>
-        <p style="margin-top:2rem;"><a href="javascript:history.back()">← Go back</a></p>
-    {% endif %}
-</div>
+<section class="hero">
+    <div class="container">
+        {% if ok %}
+            <p class="eyebrow">Section V <span class="square-mark"></span> Inquiry received</p>
+            <h1 class="hero__h1">Salamat<br><em>po.</em></h1>
+            <p class="hero__deck hero__deck--ink" style="max-width: 48ch;">Your inquiry is in the studio inbox. We reply to inquiries within two working days. If the matter is urgent, the studio Messenger is the fastest route.</p>
+            <hr class="rule-4">
+        {% else %}
+            <p class="eyebrow eyebrow--terracotta">Section V <span class="square-mark"></span> Please check the form</p>
+            <h1 class="hero__h1">A few<br>fields<br><em>need a look.</em></h1>
+            <ul class="squares" style="margin-top: 1.4rem; color: var(--ink);">
+                {% for e in errors %}<li>{{ e }}</li>{% endfor %}
+            </ul>
+            <hr class="rule-4">
+        {% endif %}
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <p style="text-align:center;">
+            {% if ok %}
+                <a class="btn--ghost" href="/">Return to the home folio</a>
+            {% else %}
+                <a class="btn--ghost" href="javascript:history.back()">← Back to the form</a>
+            {% endif %}
+        </p>
+    </div>
+</section>
 {% endblock %}

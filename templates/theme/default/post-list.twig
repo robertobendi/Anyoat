@@ -1,24 +1,155 @@
 {% extends '@theme/layout.twig' %}
 
-{% block title %}Blog · {{ site.name }}{% endblock %}
+{% block title %}Journal — Notes from the studio · Anyo at Disenyo{% endblock %}
+{% block description %}Short editorial notes on climate, materials, sites, and neighborhood — from Anyo at Disenyo, Batangas.{% endblock %}
+
+{% block vertical_folio %}
+<div class="vertical-folio" aria-hidden="true">FOLIO 03 / 2026 · JOURNAL · ANYO AT DISENYO</div>
+{% endblock %}
 
 {% block content %}
-<div class="wrap">
-    <h1>Blog</h1>
-    {% if posts|length == 0 %}
-        <div class="empty-state">
-            <p>No posts yet — check back soon.</p>
+
+{# ── FOLIO COVER — jalousie cluster illustration ──────────────── #}
+<section class="hero">
+    <div class="container">
+        <div class="hero__grid">
+            <div class="hero__illustration" aria-hidden="true">
+                <svg viewBox="0 0 720 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Olive line drawing of a jalousie window cluster">
+                    {# Mustard light through window — sun outside #}
+                    <rect x="60" y="60" width="600" height="440" fill="#FBF7EC" stroke="#6E6E3C" stroke-width="2"/>
+
+                    {# Sun behind louvers — mustard rays #}
+                    <g fill="#D9A036" opacity="0.55">
+                        <rect x="80" y="120" width="560" height="22"/>
+                        <rect x="80" y="160" width="560" height="22"/>
+                        <rect x="80" y="200" width="560" height="22"/>
+                        <rect x="80" y="240" width="560" height="22"/>
+                        <rect x="80" y="280" width="560" height="22"/>
+                        <rect x="80" y="320" width="560" height="22"/>
+                        <rect x="80" y="360" width="560" height="22"/>
+                        <rect x="80" y="400" width="560" height="22"/>
+                        <rect x="80" y="440" width="560" height="22"/>
+                    </g>
+
+                    {# Three vertical jalousie panels — louvered #}
+                    <g stroke="#6E6E3C" stroke-width="2.5" fill="none">
+                        <rect x="100" y="100" width="160" height="380"/>
+                        <rect x="280" y="100" width="160" height="380"/>
+                        <rect x="460" y="100" width="160" height="380"/>
+                    </g>
+                    {# Louver slats — terracotta tinted #}
+                    <g stroke="#A8442B" stroke-width="3">
+                        {% for y in 0..11 %}
+                        <line x1="108" y1="{{ 132 + y * 30 }}" x2="252" y2="{{ 132 + y * 30 }}"/>
+                        <line x1="288" y1="{{ 132 + y * 30 }}" x2="432" y2="{{ 132 + y * 30 }}"/>
+                        <line x1="468" y1="{{ 132 + y * 30 }}" x2="612" y2="{{ 132 + y * 30 }}"/>
+                        {% endfor %}
+                    </g>
+                    {# Louver hinge dots — mustard squares on the right edge of each #}
+                    {% for y in 0..11 %}
+                    <rect x="252" y="{{ 128 + y * 30 }}" width="6" height="6" fill="#D9A036"/>
+                    <rect x="432" y="{{ 128 + y * 30 }}" width="6" height="6" fill="#D9A036"/>
+                    <rect x="612" y="{{ 128 + y * 30 }}" width="6" height="6" fill="#D9A036"/>
+                    {% endfor %}
+                    {# Window frame thickness #}
+                    <rect x="60" y="60" width="600" height="440" fill="none" stroke="#6E6E3C" stroke-width="2"/>
+                    {# Caption #}
+                    <text x="20" y="528" font-family="Khand, sans-serif" font-size="13" font-weight="600" fill="#6E6E3C" letter-spacing="2">FIG. 04 — JALOUSIE CLUSTER · LOUVERED LIGHT · OLIVE + TERRACOTTA</text>
+                </svg>
+            </div>
+
+            <div class="hero__text">
+                <p class="folio">Folio 03 / 2026 <span class="square-mark"></span> Journal</p>
+                <h1 class="hero__h1">Notes<br>from the<br><em>studio.</em></h1>
+                <p class="hero__deck hero__deck--ink">Short notes on climate, materials, sites, and the neighborhood — written between projects.</p>
+            </div>
         </div>
-    {% else %}
-        {% for post in posts %}
-            <a class="post-card" href="/blog/{{ post.slug }}">
-                <h2>{{ post.field('title', '(untitled)') }}</h2>
-                <div class="date">{{ (post.publishAt ?? post.createdAt)|date('F j, Y') }}</div>
-                {% if post.field('excerpt') %}
-                    <p>{{ post.field('excerpt') }}</p>
-                {% endif %}
-            </a>
-        {% endfor %}
-    {% endif %}
+        <hr class="rule-4">
+    </div>
+</section>
+
+{# ── NOTE INDEX ─────────────────────────────────────────────────── #}
+<section class="section section--lg">
+    <div class="container">
+        <p class="eyebrow">Section III <span class="square-mark"></span> The index</p>
+        <h2>All notes.</h2>
+
+        <ol class="note-index">
+
+            {% if posts|default([])|length > 0 %}
+                {% for post in posts %}
+                    <li>
+                        <span class="num">N.{{ "%02d"|format(loop.index) }}</span>
+                        <span class="date">{{ (post.publishAt ?? post.createdAt)|date('M Y') }}</span>
+                        <span class="body">
+                            <a href="/journal/{{ post.slug }}">{{ post.field('title', '(untitled)') }}</a>
+                            {% if post.field('excerpt') %}<span class="dek">{{ post.field('excerpt') }}</span>{% endif %}
+                        </span>
+                    </li>
+                {% endfor %}
+            {% else %}
+                {# Graceful default — three studio notes the practice has written #}
+                <li>
+                    <span class="num">N.01</span>
+                    <span class="date">Apr 2026</span>
+                    <span class="body">
+                        <a href="/journal">On the butterfly roof, in the Batangas wet season.</a>
+                        <span class="dek">Why the V-shaped roof made sense in 1960 and still makes sense now — a short note on rainwater and a single channel.</span>
+                    </span>
+                </li>
+                <li>
+                    <span class="num">N.02</span>
+                    <span class="date">Mar 2026</span>
+                    <span class="body">
+                        <a href="/journal">A jalousie is a small machine for moving air.</a>
+                        <span class="dek">Notes from a recent renovation — replacing fixed glass with louvered jalousies in three rooms, and what changed about the way the family used the kitchen.</span>
+                    </span>
+                </li>
+                <li>
+                    <span class="num">N.03</span>
+                    <span class="date">Feb 2026</span>
+                    <span class="body">
+                        <a href="/journal">Banaba, in the schedule of trees we keep.</a>
+                        <span class="dek">On the trees we measure and preserve before drawing begins. The banaba (Lagerstroemia speciosa) shades the morning dining room of three of our recent houses.</span>
+                    </span>
+                </li>
+                <li>
+                    <span class="num">N.04</span>
+                    <span class="date">Jan 2026</span>
+                    <span class="body">
+                        <a href="/journal">Why we draw by hand, first.</a>
+                        <span class="dek">Three reasons we begin every project with a pencil notebook, not CAD — and one reason we don't keep at it longer than the first week.</span>
+                    </span>
+                </li>
+                <li>
+                    <span class="num">N.05</span>
+                    <span class="date">Nov 2025</span>
+                    <span class="body">
+                        <a href="/journal">The diaspora client, the long Messenger thread.</a>
+                        <span class="dek">A practice note on building a family house remotely — what we ask for in photos, what we ask the family to walk through, and the one decision we never make over Messenger.</span>
+                    </span>
+                </li>
+            {% endif %}
+
+        </ol>
+
+        <p style="margin-top: 2.4rem; font-family: var(--font-accent); font-weight: 600; font-size: 0.85rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mustard);">
+            Page 01 — 01
+        </p>
+    </div>
+</section>
+
+{# ── INQUIRY STRIP ──────────────────────────────────────────────── #}
+<div class="strip">
+    <hr class="rule-4" style="position: absolute; top: 0; left: 0; right: 0;">
+    <div class="strip__inner">
+        <p class="strip__phrase">Read the<br><em>folio.</em></p>
+        <div class="strip__cta">
+            <p class="eyebrow eyebrow--charcoal" style="margin: 0 0 0.4rem;">Section II <span class="square-mark"></span> Work</p>
+            <p style="color: var(--ink); max-width: 32ch; margin: 0 0 1rem;">The folio is sequential — a short, ongoing record of recent and forthcoming projects.</p>
+            <p style="margin: 0;"><a class="btn" href="/work">See the folio</a></p>
+        </div>
+    </div>
 </div>
+
 {% endblock %}
