@@ -1,0 +1,32 @@
+# UI / INTERACTION REVIEW
+
+## What I saw
+
+**Screenshots are absent** (`review/screenshot-home-desktop.png`, `review/screenshot-home-mobile.png` not present). I'm reading from `docs/index.html` and `docs/inquiry.html` directly — so the layout-integrity calls below are derived from CSS/markup, not pixels. Treat anything keyed to "at viewport X" as a risk to confirm against a render rather than a confirmed visual defect.
+
+What the markup gives me: a 12-column grid (`--grid-max: 1180px`, gap 24px) with an asymmetric hero (`.hero__illustration` cols 1–7, `.hero__text` cols 8–12, `align-items: end`); display italic Recoleta h1 clamped to 2.75–5.5rem with literal `<br>` line breaks ("Bahay,/anyo,/hangin."); a primary `.btn` in olive `#6E6E3C` with a 4×4px terracotta box-shadow and `min-height: 44px`; a secondary `.btn--ghost` that is inline text-only with an 8×8 mustard square pseudo and **no min-height, no vertical padding** (docs/index.html:384–406); an inquiry form with bottom-only `1px olive` underlines, `font-size: 16px` (good — no iOS zoom), `min-height: 44px` on inputs, but radio inputs explicitly reset to `min-height: auto` (docs/inquiry.html:692). Mobile menu is a labelled "Menu" button at 44×44 with a hamburger reveal at `≤820px` — discoverable. A `position: fixed` `.vertical-folio` lives in the right gutter at `≥1300px` only, inside the empty 60–130px gutter — does not encroach on the 1180px content column. Footer uses a 5-col grid (`1.2fr 8px 1fr 8px 1fr`) with 8×8 mustard dividers between Studio / Sections / Colophon, collapsing to single-column at `≤820px`.
+
+## Findings
+
+### Ship blockers (must fix before publish)
+
+_None I can confirm without screenshots._ The markup is bounded — `min-width: 0` is set on every grid track, `overflow-x: hidden` is on `body`, the `position: fixed` vertical folio is only shown when there is verified empty gutter (`@media (min-width: 1300px)`), and there are no overlapping `position: absolute` decorative stamps on top of body copy on the home or inquiry pages. If a render shows clipping, it will most likely surface in the spots flagged under "Important" — verify those against `screenshot-home-desktop.png` once it's produced.
+
+### Important (should fix this revision pass)
+
+- **`.btn--ghost`** — docs/index.html:384–406; appears as "See the folio" (line 1164), "View the full folio" (line 1309), "Read about the practice" (line 1335) — the secondary CTA is an inline `<a>` with `padding: 0` vertically, `font-size: 0.85rem`, no `min-height`. Total tappable height ≈ 16px — well below the 44×44 baseline used for `.btn` and `.menu-toggle`. → Add `min-height: 44px; display: inline-flex; align-items: center; padding: 0.75rem 0 0.75rem 18px;`.
+- **Radio inputs in the inquiry form** — docs/inquiry.html:692 (`.inquiry-form .radio-row input { width: auto; min-height: auto; }`) + labels at 1221–1223. Native radios render ~16–20px; the wrapping `<label>` has no min-height either. Three options (Phone / Messenger / Email) sit in a row with `gap: 1.5rem`, meaning targets are both small and tightly spaced on mobile. → Set `.radio-row label { min-height: 44px; padding: 0.5rem 0; }` and bump the radio itself with `transform: scale(1.2);` or a custom 20×20 indicator.
+- **Required fields not visually marked** — docs/inquiry.html:1199–1217. `name`, `contact`, and `message` have the `required` attribute, but the labels ("Name", "Phone or email", "Brief description") carry no asterisk, "(required)", or styled cue. Users only discover requiredness by submitting and failing. → Append a `<span aria-hidden="true" style="color: var(--terracotta);">*</span>` to required labels and add a small legend ("Fields marked * are required") above the form.
+- **Form-actions email fallback link is camouflaged** — docs/inquiry.html:1230: `<a ... style="color: var(--charcoal);">hello@anyoatdisenyo.ph</a>` inside a `.note` block that is itself charcoal, uppercase Khand, opacity 0.78. The link inherits a terracotta underline from the base `a` style, but in caps-Khand at 0.72rem the underline is faint and the colour override removes the only weight cue. Affordance is weak. → Drop the inline `color` override so the link is `var(--ink)` (or terracotta on the underline) and let the underline carry the affordance.
+- **Desktop nav touch/click area is tight** — docs/index.html:241–250: `.site-nav a` has `padding: 0.4rem 0` and `font-size: 0.98rem`, giving ~28px tappable height. Fine for a precise mouse, but margins of error on trackpads or hybrids (iPad with cursor) are slim. → `padding: 0.85rem 0;` so the desktop hit area reaches ~44px while still visually quiet.
+
+### Nice to have (skip if budget tight)
+
+- **Hero CTA spacing is two `&nbsp;`** — docs/index.html:1163: `<a class="btn">…</a> &nbsp; &nbsp; <a class="btn--ghost">…</a>`. Non-breaking spaces as gutter is brittle; if the buttons wrap on a narrow viewport (e.g. 360px) the second button stacks against the first with no top margin. → Wrap both in a `display: flex; gap: 1.25rem; flex-wrap: wrap;` container and drop the `&nbsp;`s.
+- **Focus-visible styling is missing** — the global `a:focus`/`button:focus` is not styled; relying on the browser default ring on top of a paper-grain background may render weakly on Manila. → Add `a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid var(--terracotta); outline-offset: 3px; }`.
+- **Underline border thickens on focus (input layout shift)** — docs/index.html:664–669: `border-bottom-width: 2px` on focus from a `1px` base. The 1px change pushes the underline down by 1px, causing a tiny vertical jiggle as the user tabs through. → Keep `border-bottom-width: 1px` and switch to `box-shadow: inset 0 -2px 0 var(--terracotta);` for the focus emphasis.
+- **Brand mark SVG aspect mismatch** — docs/index.html:1057 has `viewBox="0 0 240 120"` (2:1) in a 56×44 box (~1.27:1). With default `preserveAspectRatio="xMidYMid meet"` the glyph renders ~56×28 and floats vertically in the 44px box, leaving ~8px of empty space above and below. Not a collision, but the lockup may look slightly under-scaled. → Either set the container to `height: 28px` or tighten the viewBox to the glyph's actual bounds.
+
+## Summary for the synthesiser
+
+Mobile interaction is the soft spot of this build — the secondary `.btn--ghost` CTA, the inquiry radio row, and the unmarked required fields all fall below baseline touch and form-clarity standards while the rest of the layout looks structurally sound from the markup.
